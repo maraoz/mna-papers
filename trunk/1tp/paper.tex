@@ -1,0 +1,229 @@
+%
+% Latex example file for postgrads (04/10/03)
+%
+% If you have questions please email me: 
+%
+% M.L.Balogh@durham.ac.uk
+%
+% or find me in room OC312.
+%
+% you can copy this file and others from :
+%
+% http://star-www.dur.ac.uk/~balogh/latex/
+%
+% Note you can get Latex style files etc. from http://www.ctan.org
+
+
+% 2. The aastex class file includes some useful astronomy definitions,
+% for example special math symbols that are commonly used.  Use
+% emulateapj instead to make Apj format.
+% YOU SHOULD REMOVE THE TABLE OF
+% CONTENTS PAGE WHEN USING APJ FORMAT.
+%
+%\documentclass[11pt,a4paper]{aastex}
+\documentclass[11pt,a4paper]{emulateapj}
+\bibliographystyle{apj}
+
+
+%define general packages
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{natbib}
+% spanish packages
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+%internal short cuts
+\def \HgA {H$\gamma_A$}
+\def \gon {Gonz\'{a}lez}
+\def \Hbp {H$\beta ^\prime$}
+
+\begin{document}
+
+\title{Diseño de reactores nucleares \HgA}
+\author{Harald Kuntschner \& Michael Balogh}
+\date{\today}
+
+
+\begin{abstract}
+This is a sample document which demonstrates some of the basic features
+of \LaTeX.  You can easily reformat it for different document or bibliography styles.
+\end{abstract}
+
+\maketitle
+
+
+
+
+%Section heading
+\section{Introduction}
+This file is an example of how to use \LaTeX.  In principle, you only have to worry
+about the text content; formatting is taken care of by the options and arguments of
+the ``$\backslash$documentclass'' command (other style files are available on the Web;
+see \S\ref{sec-webrefs}).  In practice, however, things are not so simple.  Things like
+figures and bibliographies can go all wrong when you change styles, so expect to have
+to fiddle!  
+
+\section{Examples}
+
+This is an example of a \LaTeX\ document.  
+
+\medskip
+
+Galaxies are one of the \textbf{grandest} structures of the universe.
+Their sizes range from as small as $10^6 \text{M}_\odot$ to as much as
+$10^{13} \text{M}_\odot$, being built of stars, interstellar gas, dust
+and perhaps dark matter. Yet galaxies were recognized only early in
+this century (1920s) as \textit{vast} assemblages of stars, distinct
+from our own Galaxy. Edwin~P.~Hubble (1889~-~1953) was one of the
+pioneers in this field. He introduced a classification diagram for
+galaxies, now widely known as the Hubble ``tuning fork'' diagram
+\cite[][see Figure~\ref{fig:hubble_dia} for a revised Hubble
+diagram]{hub36}.
+
+
+%
+% Subsection heading
+%
+\subsection{Example of a list and how to run \LaTeX} 
+
+% list environment
+\begin{enumerate}
+  
+\item Write document: emacs test.tex $\Longrightarrow$ test.tex
+  
+\item \LaTeX\ document: latex test.tex $\Longrightarrow$ test.dvi
+
+\item Create bibliography: bibtex test.tex $\Longrightarrow$ test.bbl
+
+\item Correct X-refs: redo step 2. twice more!
+  
+\item View document: xdvi test.dvi 
+
+\item Produce ps file: dvips test.dvi $\Longrightarrow$ test.ps
+
+\item Print document: lpr test.ps
+
+\end{enumerate}
+
+%
+% Another subsection
+%
+\subsection{Math stuff}
+
+For the following discussion let $G(n)$ be the spectrum of a galaxy
+whose redshift and velocity dispersion are to be determined and $S(n)$
+the spectrum of a {template} star at zero redshift, similar spectral type
+to the galaxy and at instrumental resolution. The spectra have been
+continuum subtracted and end-masked, and are each sampled in N bins of
+equal $\log \lambda$ spacing. A velocity shift is then a linear
+function of the spacing $\Delta \log \lambda$, with velocity increments
+$\Delta v$ as follows:
+
+%
+% ``Pure'' equations
+%
+\begin{eqnarray}
+  \Delta v &=& c \times \Delta \ln \lambda \\
+           &=& c \times \ln (10) \times \Delta \log \lambda
+\end{eqnarray}
+where c is the speed of light. Now the normalized cross correlation
+function is defined as:
+
+\begin{equation}
+  \label{equ:cross_corr}
+  c(n)=G(m) \otimes S(n) = \frac{1}{N\sigma_G\sigma_S}\sum_{m=0}^{N}G(m)S(m-n)
+\end{equation}
+where $\sigma_G$ and $\sigma_S$ are the RMS deviations:
+
+\begin{eqnarray}
+  \sigma_G^2 &=& \frac{1}{N}\sum_{n=0}^{N}G(n)^2 \\
+  \sigma_S^2 &=& \frac{1}{N}\sum_{n=0}^{N}S(n)^2 
+\end{eqnarray}
+
+%
+%
+\subsection{Table environment}
+%
+%
+
+%
+% Table environment
+%
+\begin{table}
+  \caption{A Collection of Distance Measurements to Fornax}
+  \label{tab:distance}
+  \begin{center}
+    \leavevmode
+    \begin{tabular}{lll} \hline \hline              
+  $m-M$          & Method              & Reference      \\ \hline 
+  31.31$\pm$0.27 & Cepheid             & \citet{sil98}  \\
+  31.22$\pm$0.06 & I-band SBF          & \citet{jen98}  \\
+  31.32$\pm$0.24 & K$^\prime$-band SBF & \citet{jen98}  \\
+  30.94$\pm$0.33 & I-band TFR          & \citet{bure96} \\
+  31.07$\pm$0.13 & V-band GCLF         & \citet{Koh96}  \\
+  30.85$\pm$0.11 & I-band GCLF         & \citet{Koh96}  \\
+  31.14$\pm$0.14 & PNLF                & \citet{mcm93}  \\ \hline
+  \multicolumn{3}{l}{}                                             \\       
+  \multicolumn{3}{l}{SBF: Surface Brightness Fluctuations}         \\
+  \multicolumn{3}{l}{TFR: Tully-Fisher relation}                   \\
+  \multicolumn{3}{l}{PNLF: Planetary Nebulae Luminosity Functions} \\
+  \multicolumn{3}{l}{GCLF: Globular Cluster Luminosity Functions}  \\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+%
+%
+\subsection{Fonts and character sizes}
+%
+%
+One can typeset a text {\sffamily\bfseries\large in a large sans serif
+  bold typeface.} Or one can use a {\slshape\tiny tiny slanted
+  typeface.} For more information see ``The \LaTeX\ Companion'' page
+170 .
+
+
+%
+%
+\subsection{\LaTeX\, info}\label{sec-webrefs}
+%
+%
+\subsubsection{WEB info on \LaTeX}
+There are links to some useful websites and \LaTeX\ resources are available
+from: \\ {\tt http://star-www.dur.ac.uk/$\sim$balogh/latex/}.
+
+\subsubsection{Books and guides for \LaTeX}
+\begin{itemize}
+\item {\it The LaTeX Companion}, by Michel Gossens, Frank Mittelbach, Alexander Samarin.
+\item {\it LaTeX: A Document Preparation System -- User's Guide and
+    Reference Manual}, by Leslie Lamport, 2nd ed
+\item {\it The Not So Short Introduction to LaTeX2e}, Tobias Oetiker,
+  see Starlink WEB page
+\end{itemize}
+\subsection{Bibilographies}
+
+Bibliographies can be greatly facilitated with \LaTeX.  The best option is to keep a database
+of references: see the file http://star-www.dur.ac.uk/$\sim$balogh/latex/example.bib for an example.
+Use the apropriate bibliography style file (*.bst) to format the bibliography; read the first few
+lines of this file for a description of usage.  Running ``bibtex'' on your document (see below)
+will generate a *.bbl file with the appropriate references.  Alternatively, you can enter the
+references directly, as described in the ``Not-so-short Guide''.  
+
+Here are some examples of the different ways you can reference a source with the
+{\it natbib.sty} style file.  See the header of that file for more options.
+\begin{itemize}
+\item A first attempt to model this was made by \citet{bar96}.
+\item This did not agree with earlier models \citep{bar96}.
+\item There are several models for this phenomenon \citep{bar96,bau96}
+\item There are several models for this phenomenon \citep[e.g., ][]{bar96,bau96,bure96}
+\item Our model is better \citep[Fig. 5]{bau96}.
+\item I want to do the references myself! (Baugh et al. 1996)\nocite{bau96}.
+\end{itemize}
+%
+% References
+%
+\bibliography{example}
+
+\end{document}
+
