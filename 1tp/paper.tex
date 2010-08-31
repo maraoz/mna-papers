@@ -2,25 +2,15 @@
 % Latex example file for postgrads (04/10/03)
 %
 % If you have questions please email me: 
-%
 % M.L.Balogh@durham.ac.uk
-%
 % or find me in room OC312.
-%
-% you can copy this file and others from :
-%
-% http://star-www.dur.ac.uk/~balogh/latex/
 %
 % Note you can get Latex style files etc. from http://www.ctan.org
 
 
-% 2. The aastex class file includes some useful astronomy definitions,
-% for example special math symbols that are commonly used.  Use
-% emulateapj instead to make Apj format.
+% Use emulateapj instead to make Apj format.
 % YOU SHOULD REMOVE THE TABLE OF
 % CONTENTS PAGE WHEN USING APJ FORMAT.
-%
-%\documentclass[11pt,a4paper]{aastex}
 \documentclass[11pt,a4paper]{emulateapj}
 \bibliographystyle{apj}
 
@@ -29,23 +19,39 @@
 \usepackage{epsfig}
 \usepackage{amsmath}
 \usepackage{natbib}
+
 % spanish packages
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
+\languageshorthands{none}
+\noextrasspanish
+\let\layoutspanish\relax
+\usepackage[spanish]{babel}
+\renewcommand\shorthandsspanish{}
 
 %internal short cuts
 \def \HgA {H$\gamma_A$}
 \def \gon {Gonz\'{a}lez}
 \def \Hbp {H$\beta ^\prime$}
 
+
+
+
+
+
+
+
+
 \begin{document}
 
-\title{Diseño de reactores nucleares \HgA}
-\author{Harald Kuntschner \& Michael Balogh}
+\submitted{Departamento Ing. en Informática, ITBA}
+\title{Diseñññññññññññño de reactores nucleares \HgA}
+\author{Williams M. \& Aráoz M.}
 \date{\today}
 
 
 \begin{abstract}
+Entre 2 y tres oraciones.
 This is a sample document which demonstrates some of the basic features
 of \LaTeX.  You can easily reformat it for different document or bibliography styles.
 \end{abstract}
@@ -55,8 +61,7 @@ of \LaTeX.  You can easily reformat it for different document or bibliography st
 
 
 
-%Section heading
-\section{Introduction}
+\section{Introduccción}
 This file is an example of how to use \LaTeX.  In principle, you only have to worry
 about the text content; formatting is taken care of by the options and arguments of
 the ``$\backslash$documentclass'' command (other style files are available on the Web;
@@ -64,7 +69,7 @@ see \S\ref{sec-webrefs}).  In practice, however, things are not so simple.  Thin
 figures and bibliographies can go all wrong when you change styles, so expect to have
 to fiddle!  
 
-\section{Examples}
+\section{Sección 2}
 
 This is an example of a \LaTeX\ document.  
 
@@ -220,10 +225,14 @@ Here are some examples of the different ways you can reference a source with the
 \item Our model is better \citep[Fig. 5]{bau96}.
 \item I want to do the references myself! (Baugh et al. 1996)\nocite{bau96}.
 \end{itemize}
+
+
+\section{Conclusiones}
+Acá poner conclusiones, OBLIGATORIAMENTE
 %
 % References
 %
-\bibliography{example}
+\bibliography{paper}
 
 \end{document}
 
