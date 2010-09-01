@@ -33,6 +33,7 @@
 \def \HgA {H$\gamma_A$}
 \def \gon {Gonz\'{a}lez}
 \def \Hbp {H$\beta ^\prime$}
+\def \warn {{\sffamily\bfseries\large WARNING, ARREGLAR:}}
 
 
 
@@ -45,15 +46,16 @@
 \begin{document}
 
 \submitted{Departamento Ing. en Informática, ITBA}
-\title{Diseñññññññññññño de reactores nucleares \HgA}
+\title{Diseño de reactores nucleares \HgA}
 \author{Williams M. \& Aráoz M.}
 \date{\today}
 
 
 \begin{abstract}
 Entre 2 y tres oraciones.
-This is a sample document which demonstrates some of the basic features
-of \LaTeX.  You can easily reformat it for different document or bibliography styles.
+\warn completar
+ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT 
+ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT 
 \end{abstract}
 
 \maketitle
@@ -62,12 +64,43 @@ of \LaTeX.  You can easily reformat it for different document or bibliography st
 
 
 \section{Introduccción}
-This file is an example of how to use \LaTeX.  In principle, you only have to worry
-about the text content; formatting is taken care of by the options and arguments of
-the ``$\backslash$documentclass'' command (other style files are available on the Web;
-see \S\ref{sec-webrefs}).  In practice, however, things are not so simple.  Things like
-figures and bibliographies can go all wrong when you change styles, so expect to have
-to fiddle!  
+Un reactor nuclear de fisión es un dispositivo en el que se producen reacciones nucleares
+donde neutrones rompen núcleos de número atómico grande. En dicha ruptura, se
+producen: 
+\begin{enumerate}
+	\item fragmentos de fisión, esto es núcleos con Z intermedio.
+	\item neutrones que se utilizan para continuar el proceso de fusión y 
+	\item energía del orden de 200MeV. Si se dan
+las condiciones necesarias, este proceso es autosostenido, produciéndose una reacción en cadena.
+\end{enumerate}
+La energía liberada permite calentar agua que circula por un determinado circuito. Así
+se genera vapor. Este vapor es utilizado para producir el movimiento de turbinas en
+generadores de electricidad.
+
+La difusión de neutrones en el núcleo de un reactor debe ser controlada, para poder mantener
+ la reacción en cadena. Para tal fin se utilizan medios moderadores como el agua $H_2O$
+o el agua pesada $D_2O$.
+
+
+En reactores autoregenerables se utiliza como combustible nuclear sales de $U^{238}_{92}$ .
+
+Para modelar el proceso estacionario de difusión de neutrones en un reactor, consideremos
+un modelo de celda de combustible y medio moderador unidimensional. La sal $UO_2$ se
+encuentra en el núcleo de la celda emitiendo neutrones. Tales neutrones pasan al medio
+moderador que controla la difusión. Consideremos a dicho medio agua liviana.
+
+La ecuación de difusión nuclear para los neutrones, en estado estacionario es:
+\begin{eqnarray}
+  -\dfrac{d}{dx}[D \dfrac{d\phi}{dx}(x)] + \sigma \phi(x)  &=& \lambda  \Sigma_f \phi(x)
+\end{eqnarray}
+donde $\phi$ es la concentración de neutrones, $D$ es el coeficiente de difusión neutrónica del
+medio, $\sigma$ es el coeficiente de absorcion de neutrones y $\Sigma_f$ es la sección eficaz de fusión del
+medio. La constante $\lambda$ depende de la geometría del reactor y por lo tanto es un parámetro
+de diseño.
+Para el modelo $1D$ compuesto por una celda junto a un moderador 
+-cuyo diagrama se muestra en la figura N(\warn poner referencia)- las dimensiones 
+lineales son $20cm$ para la celda de combustible y 10cm para la barra de moderador.
+Además, en la figura, se dán los valores de $\sigma$, $D$, y $\Sigma_f$.
 
 \section{Sección 2}
 
