@@ -103,7 +103,7 @@ lineales son $20cm$ para la celda de combustible y 10cm para la barra de moderad
 Además, en la figura, se dán los valores de $\sigma$, $D$, y $\Sigma_f$.
 
 
-En la sección 2 \warn completar con el párrafo final. En la sección \ref{sec:discretizacion} se discretiza
+En la sección \ref{sec:discretizacion} se discretiza
 el problema continuo mediante un algoritmo para el cómputo de la derivada y en la sección \ref{sec:computo} 
 se utiliza este modelo discretizado para hallar una solución numérica para la concentración de neutrones
 en estado estacionario del reactor nuclear. En la sección \ref{sec:conclusiones} se presentan las conclusiones
@@ -111,7 +111,80 @@ que se desprendieron de este trabajo.
 
 \section{Discretización del problema}
 \label{sec:discretizacion}
-This is an example of a \LaTeX\ document.  
+\begin{eqnarray}
+	\dfrac{d}{dx}[D \dfrac{d\phi}{dx}(x)]  
+\end{eqnarray}
+\begin{eqnarray}
+	\dfrac{D_{i+\frac{1}{2}}\phi'(x_{i+\frac{1}{2}})  -  D_{i-\frac{1}{2}}\phi'(x_{i-\frac{1}{2}})}     {h} 
+\end{eqnarray}
+\begin{eqnarray}
+	\dfrac{1}{h} [	D_{i+\frac{1}{2}}.(\dfrac{\phi_{i+1} - \phi_{i}}{h}) 	-
+			D_{i-\frac{1}{2}}.(\dfrac{\phi_{i} - \phi_{i-1}}{h})]	
+\end{eqnarray}
+\begin{eqnarray}
+	\dfrac{D_{i+\frac{1}{2}}(\phi_{i+1} - \phi_{i}) - D_{i-\frac{1}{2}}(\phi_{i} - \phi_{i-1})}{h^2}
+\end{eqnarray}
+\begin{eqnarray}
+	-[\dfrac{D_{i+\frac{1}{2}}(\phi_{i+1} - \phi_{i}) - D_{i-\frac{1}{2}}(\phi_{i} - \phi_{i-1})}{h^2}]
+	+ \sigma_i \phi_i &=& \lambda \Sigma_{fi} \phi_i
+\end{eqnarray}
+
+\begin{eqnarray}
+	D(x)=\left\{
+		\begin{matrix}
+			2 &\mbox{ si }& 0 < x < 20\\
+			1 & \mbox{ si }& 20 < x < 30\\
+		\end{matrix} \right.
+\end{eqnarray}
+\begin{eqnarray}
+	\sigma(x)=\left\{
+		\begin{matrix}
+			0.1 &\mbox{ si }& 0 < x < 20\\
+			0.021 & \mbox{ si }& 20 < x < 30\\
+		\end{matrix} \right.
+\end{eqnarray}
+\begin{eqnarray}
+	\Sigma_f(x)=\left\{
+		\begin{matrix}
+			0.11 &\mbox{ si }& 0 < x < 20\\
+			0 & \mbox{ si }& 20 < x < 30\\
+		\end{matrix} \right.
+\end{eqnarray}
+
+\begin{eqnarray}
+	x_i &=&x_0 + h*i
+\end{eqnarray}
+\begin{eqnarray}
+	\phi_i &\cong&\phi(x_0 + h.i)
+\end{eqnarray}
+Forma final discretizada:
+\begin{eqnarray}
+	-D_{i+\frac{1}{2}}.\phi_{i+1} + \\
+	+(D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + h^2.\sigma_i)\phi_{i} - \\
+	-D_{i-\frac{1}{2}}\phi_{i-1} &=& \lambda h^2 \Sigma_{fi} \phi_i
+\end{eqnarray}
+Las condiciones de borde son $\phi'(0) = 0$ y $\phi(30) = 0$.
+
+Y hay que tener en cuenta que para el caso $i = 0$ podemos aproximar la derivada como:
+\begin{eqnarray}
+	\phi'(0) &\cong & \dfrac{\phi_1 - \phi_0}{h} \\
+\end{eqnarray}
+De lo que se deduce que
+\begin{eqnarray}
+	\phi_0 &=&\phi_1
+\end{eqnarray}
+Esto pasado a forma matricial:
+\begin{eqnarray}
+	 \left( \begin{array}{ccccc}
+		D_{i+\frac{1}{2}} + h^2\sigma_i & -D_{i+\frac{1}{2}}  					& 0 		& 0 & \dots \\
+		-D_{i-\frac{1}{2}} 		& D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + h^2\sigma_i 	& -D_{i+\frac{1}{2}} & 0 & \dots \\
+		0 & -D_{i-\frac{1}{2}}& D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + h^2\sigma_i & -D_{i+\frac{1}{2}}  & \dots\\
+		\vdots &\vdots&\ddots&\ddots&\\
+		\end{array} 
+	\right)
+\end{eqnarray}
+
+
 
 \section{Cómputo de la concentración de neutrones en estado estacionario}
 \label{sec:computo}
