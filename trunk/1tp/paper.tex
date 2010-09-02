@@ -122,7 +122,7 @@ utilizando un esquema centrado de orden dos. Para lograr esto se utilizará el a
 Ahora entonces procedemos a discretizar el problema. Lo resolveremos por partes para simplificar los cálculos. Primero resolvemos la ecuación \ref{eq:discretizacionDelaDerivada}.
 \begin{eqnarray}
 \label{eq:discretizacionDelaDerivada}
-	\dfrac{d}{dx}[D \dfrac{d\phi}{dx}(x)]  
+	\dfrac{d}{dx}\bigg[D \dfrac{d\phi}{dx}(x)\bigg]  
 \end{eqnarray}
 Como el valor de $D$ depende del valor de $x$, la denotaremos $D(x)$. La misma ecuación \ref{eq:discretizacionDelaDerivada}, se puede escribir de la siguiente forma:
 \begin{eqnarray}
@@ -132,19 +132,16 @@ Como el valor de $D$ depende del valor de $x$, la denotaremos $D(x)$. La misma e
 Si aplicamos el algoritmo \ref{eq:algoritmoDeDiscretizacion} en la ecuación \ref{eq:discretizacionDelaDerivadaMejorado}, se obtiene lo siguiente:
 \begin{eqnarray}
 \label{eq:desarrolloDeLaDiscretizacion}
-	\dfrac{d}{dx}[D(x) \phi'(x)] &=& \dfrac{D_{i+\frac{1}{2}}\phi'(x_{i+\frac{1}{2}})  -  D_{i-\frac{1}{2}}\phi'(x_{i-\frac{1}{2}})}     {2h} 
+	\dfrac{d}{dx}[D(x) \phi'(x)] &=& \dfrac{D_{i+\frac{1}{2}}\phi'\big(x_{i+\frac{1}{2}}\big)  -  D_{i-\frac{1}{2}}\phi'\big(x_{i-\frac{1}{2}}\big)}     {2h} 
 \end{eqnarray}
 De la misma manera, si aplicamos el algoritmo \ref{eq:algoritmoDeDiscretizacion} en la ecuación \ref{eq:desarrolloDeLaDiscretizacion} sobre los valores $\phi'(x_{i+\frac{1}{2}})$ y $\phi'(x_{i-\frac{1}{2}})$, obtenemos el siguiente resultado:
 \begin{eqnarray}
 \label{eq:desarrolloDeLaDiscretizacion2}
-	\dfrac{d}{dx}[D(x) \phi'(x)] &=& \dfrac{1}{2h} [	D_{i+\frac{1}{2}}.(\dfrac{\phi_{i+1} - \phi_{i}}{2h}) 	-
-			D_{i-\frac{1}{2}}.(\dfrac{\phi_{i} - \phi_{i-1}}{2h})]	
+	\dfrac{d}{dx}[D(x) \phi'(x)] &=& \dfrac{1}{2h} \bigg[	D_{i+\frac{1}{2}}.\bigg(\dfrac{\phi_{i+1} - \phi_{i}}{2h}\bigg) 	-
+			D_{i-\frac{1}{2}}.\bigg(\dfrac{\phi_{i} - \phi_{i-1}}{2h}\bigg) \bigg]	\\
+	&=&\dfrac{D_{i+\frac{1}{2}}(\phi_{i+1} - \phi_{i}) - D_{i-\frac{1}{2}}(\phi_{i} - \phi_{i-1})}{4h^2}
 \end{eqnarray}
 
-
-\begin{eqnarray}
-	\dfrac{D_{i+\frac{1}{2}}(\phi_{i+1} - \phi_{i}) - D_{i-\frac{1}{2}}(\phi_{i} - \phi_{i-1})}{4h^2}
-\end{eqnarray}
 \begin{eqnarray}
 	-[\dfrac{D_{i+\frac{1}{2}}(\phi_{i+1} - \phi_{i}) - D_{i-\frac{1}{2}}(\phi_{i} - \phi_{i-1})}{4h^2}]
 	+ \sigma_i \phi_i &=& \lambda \Sigma_{fi} \phi_i
