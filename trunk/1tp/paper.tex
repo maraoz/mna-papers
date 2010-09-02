@@ -107,7 +107,7 @@ Además, en la figura, se dán los valores de $\sigma$, $D$, y $\Sigma_f$.
 \begin{figure*}
   \begin{center}
     \leavevmode
-      \psfig{file=images/img1.png, width=537px}
+      \psfig{file=images/img1.png, width=254px}
        \caption[Esquema simple del reactor]{Modelo de un ractor nuclear unidimensional.
          Diagrama adaptado de \citet{diaz10}.}
      \label{fig:esquema}
@@ -139,6 +139,13 @@ como una función constante por tramos que varía según $x$. Tenemos entonces:
 		\end{matrix} \right.
 \end{eqnarray}
 
+Por ende se puede reescribir la ecuación diferencial \ref{eq:ecuacionADiscretizar} de la siguiente manera:
+\begin{eqnarray}
+\label{eq:ecuacionADiscretizarParticular}
+  -\dfrac{d}{dx}[D(x) \dfrac{d\phi}{dx}(x)] + \sigma(x) \phi(x)  &=& \lambda  \Sigma_f(x) \phi(x)
+\end{eqnarray}
+En este trabajo se halla una solución numérica para la ecuación diferencial anterior. El vector solución
+representa la concentración de neutrones $\phi(x)$.
 
 El resto de este trabajo se organiza de la siguiente manera: en la sección \ref{sec:discretizacion} se discretiza
 el problema continuo mediante un algoritmo para el cómputo de la derivada y en la sección \ref{sec:computo} 
