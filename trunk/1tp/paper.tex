@@ -167,7 +167,7 @@ Ahora entonces procedemos a discretizar el problema. Lo resolveremos por partes 
 \label{eq:discretizacionDelaDerivada}
 	\dfrac{d}{dx}\bigg[D \dfrac{d\phi}{dx}(x)\bigg]  
 \end{eqnarray}
-Como el valor de $D$ depende del valor de $x$, la denotaremos $D(x)$. La misma ecuación \ref{eq:discretizacionDelaDerivada}, se puede escribir de la siguiente forma:
+Como ya dijimos, el valor de $D$ depende del valor de $x$, y la denotaremos $D(x)$. La misma expresión \ref{eq:discretizacionDelaDerivada}, se puede escribir, entonces, de la siguiente forma:
 \begin{eqnarray}
 \label{eq:discretizacionDelaDerivadaMejorado}
 	\dfrac{d}{dx}[D(x) \phi'(x)]
@@ -177,13 +177,23 @@ Si aplicamos el algoritmo \ref{eq:algoritmoDeDiscretizacion} en la ecuación \re
 \label{eq:desarrolloDeLaDiscretizacion}
 	\dfrac{d}{dx}[D(x) \phi'(x)] &=& \dfrac{D_{i+\frac{1}{2}}\phi'\big(x_{i+\frac{1}{2}}\big)  -  D_{i-\frac{1}{2}}\phi'\big(x_{i-\frac{1}{2}}\big)}     {2h} 
 \end{eqnarray}
+Donde hemos considerado:
+
+\begin{eqnarray}
+	x_i &=&x_0 + h*i \\
+	\phi_i &\cong&\phi(x_0 + h.i)
+\end{eqnarray}
+
 De la misma manera, si aplicamos el algoritmo \ref{eq:algoritmoDeDiscretizacion} sobre los valores $\phi'(x_{i+\frac{1}{2}})$ y $\phi'(x_{i-\frac{1}{2}})$ en la ecuación \ref{eq:desarrolloDeLaDiscretizacion}, obtenemos el siguiente resultado:
 \begin{eqnarray}
 \label{eq:desarrolloDeLaDiscretizacion2}
-	\dfrac{d}{dx}[D(x) \phi'(x)] &=& \dfrac{1}{2h} \bigg[	D_{i+\frac{1}{2}}.\bigg(\dfrac{\phi_{i+1} - \phi_{i}}{2h}\bigg) 	-
-			D_{i-\frac{1}{2}}.\bigg(\dfrac{\phi_{i} - \phi_{i-1}}{2h}\bigg) \bigg]	\\
+	\dfrac{1}{2h} \bigg[	D_{i+\frac{1}{2}}.\bigg(\dfrac{\phi_{i+1} - \phi_{i}}{2h}\bigg) 	-
+			D_{i-\frac{1}{2}}.\bigg(\dfrac{\phi_{i} - \phi_{i-1}}{2h}\bigg) \bigg]\\
+\end{eqnarray}
+Que se puede reordenar como:
+\begin{eqnarray}
 \label{eq:reemplazoDeLaDerivada}
-	&=&\dfrac{D_{i+\frac{1}{2}}(\phi_{i+1} - \phi_{i}) - D_{i-\frac{1}{2}}(\phi_{i} - \phi_{i-1})}{4h^2}
+	\dfrac{D_{i+\frac{1}{2}}(\phi_{i+1} - \phi_{i}) - D_{i-\frac{1}{2}}(\phi_{i} - \phi_{i-1})}{4h^2}
 \end{eqnarray}
 Si escribimos de nuevo la ecuación, pero ahora teniendo en cuenta la discretización recién realizada logramos la siguiente expresión:
 \begin{eqnarray}
@@ -192,24 +202,16 @@ Si escribimos de nuevo la ecuación, pero ahora teniendo en cuenta la discretiza
 	+ \sigma_i \phi_i &=& \lambda \Sigma_{fi} \phi_i
 \end{eqnarray}
 
-
-
-\begin{eqnarray}
-	x_i &=&x_0 + h*i
-\end{eqnarray}
-\begin{eqnarray}
-	\phi_i &\cong&\phi(x_0 + h.i)
-\end{eqnarray}
 Si realizamos cuentas sobre la ecuación \ref{eq:discretizacionNoFinal}, obtenemos la forma final discretizada:
 \begin{eqnarray}
 	-D_{i+\frac{1}{2}}.\phi_{i+1} + \\
 	+(D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + 4h^2.\sigma_i)\phi_{i} - \\
 	-D_{i-\frac{1}{2}}\phi_{i-1} &=& \lambda 4h^2 \Sigma_{fi} \phi_i
 \end{eqnarray}
-Las condiciones de borde son $\phi'(0) = 0$ y $\phi(30) = 0$. Asimismo, hay que tener en cuenta que para el caso $i = 0$ podemos aproximar la derivada como:
+Las condiciones de borde dadas son $\phi'(0) = 0$ y $\phi(30) = 0$. Asimismo, hay que tener en cuenta que para el caso $i = 0$ podemos aproximar la derivada como:
 \begin{eqnarray}
 	\phi'(0) &\cong & \dfrac{\phi_1 - \phi_0}{2h}
-\end{eqnarray}
+\end{eqnarray} \\
 De lo que se deduce que
 \begin{eqnarray}
 	\phi_0 &=& \phi_1
