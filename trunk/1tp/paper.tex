@@ -64,6 +64,7 @@ ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT
 
 
 \section{Introduccción}
+\label{sec:introduccion}
 Un reactor nuclear de fisión es un dispositivo en el que se producen reacciones nucleares
 donde neutrones rompen núcleos de número atómico grande. En dicha ruptura, se
 producen: 
@@ -185,12 +186,25 @@ Si realizamos cuentas sobre la ecuación \ref{eq:discretizacionNoFinal}, obtenem
 \end{eqnarray}
 Las condiciones de borde son $\phi'(0) = 0$ y $\phi(30) = 0$. Asimismo, hay que tener en cuenta que para el caso $i = 0$ podemos aproximar la derivada como:
 \begin{eqnarray}
-	\phi'(0) &\cong & \dfrac{\phi_1 - \phi_0}{2h} \\
+	\phi'(0) &\cong & \dfrac{\phi_1 - \phi_0}{2h}
 \end{eqnarray}
 De lo que se deduce que
 \begin{eqnarray}
-	\phi_0 &=&\phi_1
+	\phi_0 &=& \phi_1
 \end{eqnarray}
+Entonces, utilizando un esquema centrado de orden 2, se logro discretizar el problema continuo que se presentó en la sección \ref{sec:introduccion}. La discretización obtenida es la siguiente:
+\begin{eqnarray}
+	-D_{i+\frac{1}{2}}.\phi_{i+1} + \\
+	+(D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + 4h^2.\sigma_i)\phi_{i} - \\
+	-D_{i-\frac{1}{2}}\phi_{i-1} &=& \lambda 4h^2 \Sigma_{fi} \phi_i
+\end{eqnarray}
+, con $\phi_0 = \phi_1$ y $\phi(30) = 0$.
+
+
+
+
+\section{Cómputo de la concentración de neutrones en estado estacionario}
+\label{sec:computo}
 Esto pasado a forma matricial:
 \begin{eqnarray}
 \label{eqn:matrizA}
@@ -207,11 +221,6 @@ Llamemos A a la matriz (\ref{eqn:matrizA}), entonces lo que obtenemos es la ecua
 \label{eq:ecuacionDelAutovalor}
 A . \phi = \lambda . \phi
 \end{eqnarray}
-
-
-
-\section{Cómputo de la concentración de neutrones en estado estacionario}
-\label{sec:computo}
 
 \section{Conclusiones}
 \label{sec:conclusiones}
