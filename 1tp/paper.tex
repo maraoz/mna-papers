@@ -79,7 +79,7 @@ se genera vapor. Este vapor es utilizado para producir el movimiento de turbinas
 generadores de electricidad.
 
 La difusión de neutrones en el núcleo de un reactor debe ser controlada, para poder mantener
- la reacción en cadena. Para tal fin se utilizan medios moderadores como el agua $H_2O$
+la reacción en cadena. Para tal fin se utilizan medios moderadores como el agua $H_2O$
 o el agua pesada $D_2O$.
 
 
@@ -99,10 +99,45 @@ donde $\phi$ es la concentración de neutrones, $D$ es el coeficiente de difusi�
 medio, $\sigma$ es el coeficiente de absorcion de neutrones y $\Sigma_f$ es la sección eficaz de fusión del
 medio. La constante $\lambda$ depende de la geometría del reactor y por lo tanto es un parámetro
 de diseño.
-Para el modelo $1D$ compuesto por una celda junto a un moderador 
--cuyo diagrama se muestra en la figura N(\warn poner referencia)- las dimensiones 
+Para el modelo unidimensional compuesto por una celda junto a un moderador 
+-cuyo diagrama se muestra en la figura \ref{fig:esquema}- las dimensiones 
 lineales son $20cm$ para la celda de combustible y 10cm para la barra de moderador.
 Además, en la figura, se dán los valores de $\sigma$, $D$, y $\Sigma_f$.
+
+\begin{figure*}
+  \begin{center}
+    \leavevmode
+      \psfig{file=images/img1.png}
+       \caption[Esquema simple del reactor]{Modelo de un ractor nuclear unidimensional.
+         Diagrama adaptado de \citet{diaz10}.}
+     \label{fig:esquema}
+  \end{center}
+\end{figure*}
+
+Como se puede apreciar, los parámetros que se mantienen constantes dentro de cada compartimiento, pueden verse
+como una función constante por tramos que varía según $x$. Tenemos entonces:
+
+\begin{eqnarray}
+	D(x)=\left\{
+		\begin{matrix}
+			2 &\mbox{ si }& 0 < x < 20\\
+			1 & \mbox{ si }& 20 < x < 30\\
+		\end{matrix} \right.
+\end{eqnarray}
+\begin{eqnarray}
+	\sigma(x)=\left\{
+		\begin{matrix}
+			0.1 &\mbox{ si }& 0 < x < 20\\
+			0.021 & \mbox{ si }& 20 < x < 30\\
+		\end{matrix} \right.
+\end{eqnarray}
+\begin{eqnarray}
+	\Sigma_f(x)=\left\{
+		\begin{matrix}
+			0.11 &\mbox{ si }& 0 < x < 20\\
+			0 & \mbox{ si }& 20 < x < 30\\
+		\end{matrix} \right.
+\end{eqnarray}
 
 
 En la sección \ref{sec:discretizacion} se discretiza
@@ -114,12 +149,12 @@ que se desprendieron de este trabajo.
 \section{Discretización del problema}
 \label{sec:discretizacion}
 Vamos a discretizar el problema continuo que se presenta en la ecuación (\ref{eq:ecuacionADiscretizar}) 
-utilizando un esquema centrado de orden dos. Para lograr esto se utilizará el algoritmo (\ref{eq:algoritmoDeDiscretizacion}).
+utilizando un esquema centrado de orden dos. Para lograr esto se utilizará el algoritmo (\ref{eq:algoritmoDeDiscretizacion}),
 \begin{eqnarray}
 \label{eq:algoritmoDeDiscretizacion}
 	f'(x) = \frac{f(x+h) - f(x-h)}{2h} - \frac{1}{12} f'''(\xi) h^2
 \end{eqnarray}
-, donde $\xi \in int\{x-h,x+h\}$ y $h$ es el tamaño de un intervalo.
+donde $\xi \in int\{x-h,x+h\}$ y $h$ es el tamaño de un intervalo, el parámetro computacional.
 Ahora entonces procedemos a discretizar el problema. Lo resolveremos por partes para simplificar los cálculos. Primero buscamos una aproximación para la expresión \ref{eq:discretizacionDelaDerivada}.
 \begin{eqnarray}
 \label{eq:discretizacionDelaDerivada}
@@ -150,27 +185,7 @@ Si escribimos de nuevo la ecuación, pero ahora teniendo en cuenta la discretiza
 	+ \sigma_i \phi_i &=& \lambda \Sigma_{fi} \phi_i
 \end{eqnarray}
 
-\begin{eqnarray}
-	D(x)=\left\{
-		\begin{matrix}
-			2 &\mbox{ si }& 0 < x < 20\\
-			1 & \mbox{ si }& 20 < x < 30\\
-		\end{matrix} \right.
-\end{eqnarray}
-\begin{eqnarray}
-	\sigma(x)=\left\{
-		\begin{matrix}
-			0.1 &\mbox{ si }& 0 < x < 20\\
-			0.021 & \mbox{ si }& 20 < x < 30\\
-		\end{matrix} \right.
-\end{eqnarray}
-\begin{eqnarray}
-	\Sigma_f(x)=\left\{
-		\begin{matrix}
-			0.11 &\mbox{ si }& 0 < x < 20\\
-			0 & \mbox{ si }& 20 < x < 30\\
-		\end{matrix} \right.
-\end{eqnarray}
+
 
 \begin{eqnarray}
 	x_i &=&x_0 + h*i
