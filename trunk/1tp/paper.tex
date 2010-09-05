@@ -218,6 +218,7 @@ De lo que se deduce que
 \end{eqnarray}
 Entonces, utilizando un esquema centrado de orden 2, se logro discretizar el problema continuo que se presentó en la sección \ref{sec:introduccion}. La discretización obtenida es la siguiente:
 \begin{eqnarray}
+\label{eq:expresionDicretizacion}
 	-D_{i+\frac{1}{2}}.\phi_{i+1} + \\
 	+(D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + 4h^2.\sigma_i)\phi_{i} - \\
 	-D_{i-\frac{1}{2}}\phi_{i-1} &=& \lambda 4h^2 \Sigma_{fi} \phi_i
@@ -229,7 +230,12 @@ Entonces, utilizando un esquema centrado de orden 2, se logro discretizar el pro
 
 \section{Cómputo de la concentración de neutrones en estado estacionario}
 \label{sec:computo}
-Esto pasado a forma matricial:
+Una vez discretizado el problema, podemos computar la concentración de neutrones en estado estacionario. Esto es el vector solución del sistema de ecuaciones que se generan a partir de la expresión \ref{eq:expresionDicretizacion}, tomando los valores $i = 1,\ldots,29$. Esto quiere decir que el $h$ elegido es $h=30$, es decir, vamos a obtener 30 puntos, los cuales son una aproximación a la concentración de neutrones en estado estacionario para los valores $x=0,\ldots,30$. Si escribimos el sistema de ecuaciones en forma matricial obtenemos el siguiente sistema:
+\begin{eqnarray}
+\label{eq:sistemasdeecuaciones}
+A \cdot \phi = 4h^2 \lambda \Sigma_f \phi
+\end{eqnarray}
+, donde A es la siguiente matriz:
 \begin{eqnarray}
 \label{eqn:matrizA}
 	 \left( \begin{array}{ccccc}
@@ -240,15 +246,71 @@ Esto pasado a forma matricial:
 		\end{array} 
 	\right)
 \end{eqnarray}
-Llamemos A a la matriz (\ref{eqn:matrizA}), entonces lo que obtenemos es la ecuación \ref{eq:ecuacionDelAutovalor}
+, $\phi$ es el siguiente vector:
 \begin{eqnarray}
-\label{eq:ecuacionDelAutovalor}
-A . \phi = \lambda . \phi
+\phi = (\phi_1 \quad \phi_2 \quad \phi_3 \quad \phi_4 \quad \cdots\quad \phi_{30} )^T
 \end{eqnarray}
+,y $\Sigma_f$ es la siguiente matriz:
+\begin{eqnarray}
+\label{eqn:matrizA}
+	 \left( \begin{array}{ccccc}
+		\Sigma_{f1} & 0 & 0 & \cdots & 0\\
+		0 & \Sigma_{f2} & 0 &\cdots & 0\\
+		0 & 0 & \Sigma_{f3} &\cdots & 0\\
+		\vdots & & & \ddots & \vdots \\
+		0 & 0 & 0 & \cdots & \Sigma_{f29}
+		\end{array} 
+	\right)
+\end{eqnarray}
+Si resolvemos el sistema de ecuaciones \ref{eq:sistemasdeecuaciones} aplicando el método de la potencia para cálculo de autovectores y autovalores, el autovector obtenido es el vector $\phi$, que representa la concentración de neutrones en estado estacionario. 
+\section{Resultados y Conclusiones}
+\label{sec:resultadosyconclusiones}
+\warn Acá poner resultados y conclusiones, OBLIGATORIAMENTE
 
-\section{Conclusiones}
-\label{sec:conclusiones}
-\warn Acá poner conclusiones, OBLIGATORIAMENTE
+Luego de resolver por el método de la potencia el sistema de ecuaciones \ref{eq:sistemasdeecuaciones} se computó que una aproximación a la concentracion de neutrones en estado estacionario es la siguiente:
+\begin{eqnarray}
+\phi = \left( \begin{array}{c}
+    0.0799\\
+   -0.2376\\
+    0.3893\\
+   -0.5311\\
+    0.6593\\
+   -0.7708\\
+    0.8626\\
+   -0.9326\\
+    0.9787\\
+   -1.0000\\
+    0.9958\\
+   -0.9663\\
+    0.9122\\
+   -0.8349\\
+    0.7363\\
+   -0.6190\\
+    0.4859\\
+   -0.3405\\
+    0.1864\\
+   -0.0551\\
+    0.0033\\
+         0\\
+         0\\
+         0\\
+         0\\
+         0\\
+         0\\
+         0\\
+         0\\
+         0\\
+\end{array} \right)
+\end{eqnarray}
+Si graficamos $\phi$ en función de la distancia ($x$), obtenemos el gráfico \ref{fig:graficoNeutrones}. Los resultados obtenidos no son los deseados pue no representan la realidad física del problema, ya que la concentración de neutrones por definición no puede ser negativa, como se muestra en los resultados obtenidos. Esto puede ser por el valor que tomamos para $h$, pero para descartar esta suposición resolvimos el sistemas de ecuaciones \ref{eq:sistemasdeecuaciones} para distintos valores de $h$, por ejemplo para $h=0.5$ y $h=0.1$. A pesar de achicar los valores de $h$, no logramos obtener una aproximación a la concentración de neutrones en estado estacionario donde todos sus valores fueran positivos.
+\warn poner que error se tomo para el calculo $(10^-5)$.
+\begin{figure*}
+  \begin{center}
+      \epsfig{file=images/concentracionneutrones.pdf, width=400px}
+       \caption[Gráfico de la concentración de neutrones]{Concentración de neutrones en estado estacionario en función de la distancia.}
+     \label{fig:graficoNeutrones}
+  \end{center}
+\end{figure*}
 %
 % References
 %
