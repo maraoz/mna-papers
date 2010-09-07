@@ -46,16 +46,16 @@
 \begin{document}
 
 \submitted{Departamento Ing. en Informática, ITBA}
-\title{Diseño de reactores nucleares \HgA}
-\author{Aráoz M. \& Williams M.}
+\title{Diseño de reactores nucleares por analogía con problemas de autovalores}
+\author{Williams M. \& Aráoz M.}
 \date{\today}
 
 
 \begin{abstract}
-Entre 2 y tres oraciones.
-\warn completar
-ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT 
-ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT ABSTRACT 
+El diseño de un reactor nuclear es un problema muy interesante y complicado. Simplificando el
+modelo para 1 dimensión es posible predecir numéricamente el comportamiento de los neutrones
+producidos por la fusión nuclear. En este trabajo se aplica un método de la potencia con una 
+leve modificación para alcanzar dicho fin.
 \end{abstract}
 
 \maketitle
@@ -102,7 +102,7 @@ de diseño.
 Para el modelo unidimensional compuesto por una celda junto a un moderador 
 -cuyo diagrama se muestra en la figura \ref{fig:esquema}- las dimensiones 
 lineales son $20cm$ para la celda de combustible y 10cm para la barra de moderador.
-Además, en la figura, se dán los valores de $\sigma$, $D$, y $\Sigma_f$.
+Además, en la figura, se dán los valores de $\sigma$, $D$, y $\Sigma_f$. \citet{diaz10}
 
 \begin{figure*}
   \begin{center}
@@ -150,7 +150,7 @@ representa la concentración de neutrones $\phi(x)$.
 El resto de este trabajo se organiza de la siguiente manera: en la sección \ref{sec:discretizacion} se discretiza
 el problema continuo mediante un algoritmo para el cómputo de la derivada y en la sección \ref{sec:computo} 
 se utiliza este modelo discretizado para hallar una solución numérica para la concentración de neutrones
-en estado estacionario del reactor nuclear. En la sección \ref{sec:conclusiones} se presentan las conclusiones
+en estado estacionario del reactor nuclear. En la sección \ref{sec:resultadosyconclusiones} se presentan las conclusiones
 que se desprendieron de este trabajo.
 
 \section{Discretización del problema}
@@ -230,27 +230,27 @@ Entonces, utilizando un esquema centrado de orden 2, se logro discretizar el pro
 
 \section{Cómputo de la concentración de neutrones en estado estacionario}
 \label{sec:computo}
-Una vez discretizado el problema, podemos computar la concentración de neutrones en estado estacionario. Esto es el vector solución del sistema de ecuaciones que se generan a partir de la expresión \ref{eq:expresionDicretizacion}, tomando los valores $i = 1,\ldots,29$. Esto quiere decir que el $h$ elegido es $h=30$, es decir, vamos a obtener 30 puntos, los cuales son una aproximación a la concentración de neutrones en estado estacionario para los valores $x=0,\ldots,30$. Si escribimos el sistema de ecuaciones en forma matricial obtenemos el siguiente sistema:
+Una vez discretizado el problema, podemos computar la concentración de neutrones en estado estacionario. Esto es el vector solución del sistema de ecuaciones que se generan a partir de la expresión \ref{eq:expresionDicretizacion}, tomando los valores $i = 0,\ldots,29$. Esto quiere decir que el $h$ elegido es $h=30$, es decir, vamos a obtener 30 puntos, los cuales son una aproximación a la concentración de neutrones en estado estacionario para los valores $x=0cm,\ldots,30cm$. Si escribimos el sistema de ecuaciones en forma matricial obtenemos el siguiente sistema:
 \begin{eqnarray}
 \label{eq:sistemasdeecuaciones}
 A \cdot \phi = 4h^2 \lambda \Sigma_f \phi
 \end{eqnarray}
-, donde A es la siguiente matriz:
+Donde A es la siguiente matriz:
 \begin{eqnarray}
 \label{eqn:matrizA}
-	 \left( \begin{array}{ccccc}
-		D_{i+\frac{1}{2}} + 4h^2\sigma_i & -D_{i+\frac{1}{2}}  					& 0 		& 0 & \dots \\
-		-D_{i-\frac{1}{2}} 		& D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + 4h^2\sigma_i 	& -D_{i+\frac{1}{2}} & 0 & \dots \\
-		0 & -D_{i-\frac{1}{2}}& D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + 4h^2\sigma_i & -D_{i+\frac{1}{2}}  & \dots\\
-		\vdots &\vdots&\ddots&\ddots&\\
+	 \left( \begin{array}{cccc}
+		D_{i+\frac{1}{2}} + 4h^2\sigma_i & -D_{i+\frac{1}{2}}  					& 0 		&  \dots \\
+		-D_{i-\frac{1}{2}} 		& D_{i+\frac{1}{2}} + D_{i-\frac{1}{2}} + 4h^2\sigma_i 	& -D_{i+\frac{1}{2}} &  \dots \\
+		0 & -D_{i-\frac{1}{2}}& \ddots & \ddots \\
+		\vdots &\vdots&\ddots&\ddots\\
 		\end{array} 
 	\right)
 \end{eqnarray}
-, $\phi$ es el siguiente vector:
+$\phi$ es el siguiente vector:
 \begin{eqnarray}
 \phi = (\phi_1 \quad \phi_2 \quad \phi_3 \quad \phi_4 \quad \cdots\quad \phi_{30} )^T
 \end{eqnarray}
-,y $\Sigma_f$ es la siguiente matriz:
+Y $\Sigma_f$ es la siguiente matriz:
 \begin{eqnarray}
 \label{eqn:matrizA}
 	 \left( \begin{array}{ccccc}
@@ -262,55 +262,85 @@ A \cdot \phi = 4h^2 \lambda \Sigma_f \phi
 		\end{array} 
 	\right)
 \end{eqnarray}
-Si resolvemos el sistema de ecuaciones \ref{eq:sistemasdeecuaciones} aplicando el método de la potencia para cálculo de autovectores y autovalores, el autovector obtenido es el vector $\phi$, que representa la concentración de neutrones en estado estacionario. 
+Si resolvemos el sistema de ecuaciones \ref{eq:sistemasdeecuaciones} aplicando el método de la potencia para cálculo de autovectores y autovalores, el autovector obtenido es el vector $\phi$, que representa la concentración de neutrones en estado estacionario. \\
+Sin embargo, no podemos aplicar el método de la potencia directamente, ya que el sistema de la ecuación \ref{eq:sistemasdeecuaciones} no es de la forma de un problema típico de autovalores. Esto es, al no ser de la siguiente forma:
+
+\begin{eqnarray}
+\label{eqn:problemaAutovalores}
+A\phi &=& \lambda \phi
+\end{eqnarray}
+se debe aplicar un método modificado. El algoritmo de la potencia modificado que usamos para este trabajo se puede simplificar en:
+\begin{eqnarray}
+\label{eqn:algoritmoPotenciaModificado}
+x_i^{(k)} &=& \Sigma_{fi}.\phi_i^{(k)} \\
+y^{(k+1)} &=& Ax^{(k)}  \\
+\phi^{(k)} &=& \dfrac{y^{(k)}}{||y^{(k)}||} \text{ si } k \neq 0
+\end{eqnarray}
+
+Donde $\phi^{(0)}$ es un input para el algoritmo y debe ser provisto por el usuario como una primera aproximación al autovalor. En nuestro caso se usó
+el vector $\phi^{(0)} = (1\quad1\quad1\quad1\quad\dots\quad1)^T$. Con este algoritmo modificado, el valor de $\phi^{(k)}$ tiende a el valor real de $\phi$
+cuando $k\leftarrow\infty$. La implementación que usamos nosotros en particular terminaba el algoritmo numérico cuando el error era menor que un cierto
+parámetro de entrada. 
 \section{Resultados y Conclusiones}
 \label{sec:resultadosyconclusiones}
-\warn Acá poner resultados y conclusiones, OBLIGATORIAMENTE
 
-Luego de resolver por el método de la potencia el sistema de ecuaciones \ref{eq:sistemasdeecuaciones} se computó que una aproximación a la concentracion de neutrones en estado estacionario es la siguiente:
-\begin{eqnarray}
-\phi = \left( \begin{array}{c}
-    0.0799\\
-   -0.2376\\
-    0.3893\\
-   -0.5311\\
-    0.6593\\
-   -0.7708\\
-    0.8626\\
-   -0.9326\\
-    0.9787\\
-   -1.0000\\
-    0.9958\\
-   -0.9663\\
-    0.9122\\
-   -0.8349\\
-    0.7363\\
-   -0.6190\\
-    0.4859\\
-   -0.3405\\
-    0.1864\\
-   -0.0551\\
-    0.0033\\
-         0\\
-         0\\
-         0\\
-         0\\
-         0\\
-         0\\
-         0\\
-         0\\
-         0\\
-\end{array} \right)
-\end{eqnarray}
-Si graficamos $\phi$ en función de la distancia ($x$), obtenemos el gráfico \ref{fig:graficoNeutrones}. Los resultados obtenidos no son los deseados pue no representan la realidad física del problema, ya que la concentración de neutrones por definición no puede ser negativa, como se muestra en los resultados obtenidos. Esto puede ser por el valor que tomamos para $h$, pero para descartar esta suposición resolvimos el sistemas de ecuaciones \ref{eq:sistemasdeecuaciones} para distintos valores de $h$, por ejemplo para $h=0.5$ y $h=0.1$. A pesar de achicar los valores de $h$, no logramos obtener una aproximación a la concentración de neutrones en estado estacionario donde todos sus valores fueran positivos.
-\warn poner que error se tomo para el calculo $(10^-5)$.
+Luego de resolver por el método de la potencia modificado el sistema de ecuaciones \ref{eq:sistemasdeecuaciones} se computó una aproximación a la concentracion de neutrones en estado estacionario. Los valores exactos para cada $x$ (teniendo en cuenta que $x = k$ para el $h$ elegido) pueden apreciarse en la tabla \ref{tabla:resultados}.
+\begin{table}
+\begin{center}
+\begin{tabular}{c|c}
+\label{tabla:resultados}
+ k 	&	$\phi_k$ \\
+	\hline
+ 0 &  0.0799\\
+ 1 &    -0.2376\\
+ 2 &     0.3893\\
+ 3 &    -0.5311\\
+ 4 & 0.6593\\
+ 5 &    -0.7708\\
+ 6 &     0.8626\\
+ 7 &    -0.9326\\
+ 8 &     0.9787\\
+ 9 &    -1.0000\\
+ 10 &     0.9958\\
+ 11 &    -0.9663\\
+ 12 &     0.9122\\
+ 13 &  -0.8349\\
+ 14    & 0.7363\\
+ 15   & -0.6190\\
+  16  &  0.4859\\
+ 17 &   -0.3405\\
+ 18 &    0.1864\\
+ 19 &   -0.0551\\
+ 20 &    0.0033\\
+  21&         0\\
+  22&         0\\
+  23&         0\\
+  24&         0\\
+  25&         0\\
+  26&         0\\
+  27&         0\\
+  28&         0\\
+  29&         0\\
+\end{tabular}
+\end{center}
+\caption{Vector $\phi$ resultante de aplicar el algoritmo de la potencia modificado. La primer columna indica el 
+valor de $k$, que se corresponde con el de $x$ para el $h$ elegido, y la segunda columna el valor aproximado de 
+$\phi(x)$ obtenido en ese punto.}
+\end{table}
 \begin{figure*}
   \begin{center}
       \epsfig{file=images/concentracionneutrones.pdf, width=400px}
-       \caption[Gráfico de la concentración de neutrones]{Concentración de neutrones en estado estacionario en función de la distancia.}
+       \caption[Gráfico de la concentración de neutrones]{Concentración de neutrones en estado estacionario en función de la distancia $x$.}
      \label{fig:graficoNeutrones}
   \end{center}
 \end{figure*}
+
+
+Si graficamos $\phi$ en función de la distancia ($x$), obtenemos el gráfico \ref{fig:graficoNeutrones}. Los resultados obtenidos no son los deseados pue no representan la realidad física del problema, ya que la concentración de neutrones por definición no puede ser negativa, como se muestra en los resultados obtenidos. Esto puede ser por el valor que tomamos para $h$, pero para descartar esta suposición resolvimos el sistemas de ecuaciones \ref{eq:sistemasdeecuaciones} para distintos valores de $h$, por ejemplo para $h=0.5$ y $h=0.1$. A pesar de variar los valores de $h$, no logramos obtener una aproximación a la concentración de neutrones en estado estacionario donde todos sus valores fueran positivos.
+Otro factor que pudo haber llevado a esta aproximación sin correlato físico fue la tolerancia al error que se tomó para el calculo $(10^{-5})$, o que el algoritmo modificado que utilizamos no fue probado en rigurosidad para saber si era correcto para hayar la solución al sistema. \\
+
+Trabajos futuros continuando nuestra línea podrían investigar la obtención de nuevos métodos para la resolución de este problema y quizá hallar un valor de $h$ que resulte en valores razonables para el vector solución.
+
 %
 % References
 %
