@@ -1,12 +1,6 @@
 %
-% Latex example file for postgrads (04/10/03)
-%
-% If you have questions please email me: 
-% M.L.Balogh@durham.ac.uk
-% or find me in room OC312.
-%
-% Note you can get Latex style files etc. from http://www.ctan.org
-
+% tp 2 mna
+% 
 
 % Use emulateapj instead to make Apj format.
 % YOU SHOULD REMOVE THE TABLE OF
@@ -46,16 +40,13 @@
 \begin{document}
 
 \submitted{Departamento Ing. en Informática, ITBA}
-\title{Diseño de reactores nucleares por analogía con problemas de autovalores}
+\title{Filtros espaciales en imagenes mediante el paso del dominio de los colores al dominio de las frecuencias}
 \author{Williams M. \& Aráoz M.}
 \date{\today}
 
 
 \begin{abstract}
-El diseño de un reactor nuclear es un problema muy interesante y complicado. Simplificando el
-modelo para 1 dimensión es posible predecir numéricamente el comportamiento de los neutrones
-producidos por la fusión nuclear. En este trabajo se aplica un método de la potencia con una 
-leve modificación para alcanzar dicho fin.
+\warn{hacer abstract}
 \end{abstract}
 
 \maketitle
@@ -104,15 +95,15 @@ Para el modelo unidimensional compuesto por una celda junto a un moderador
 lineales son $20cm$ para la celda de combustible y 10cm para la barra de moderador.
 Además, en la figura, se dán los valores de $\sigma$, $D$, y $\Sigma_f$. \citet{diaz10}
 
-\begin{figure*}
-  \begin{center}
-    \leavevmode
-      \psfig{file=images/img1.png, width=254px}
-       \caption[Esquema simple del reactor]{Modelo de un ractor nuclear unidimensional.
-         Diagrama adaptado de \citet{diaz10}.}
-     \label{fig:esquema}
-  \end{center}
-\end{figure*}
+%\begin{figure*}
+%  \begin{center}
+%    \leavevmode
+%      \psfig{file=images/img1.png, width=254px}
+%       \caption[Esquema simple del reactor]{Modelo de un ractor nuclear unidimensional.
+%         Diagrama adaptado de \citet{diaz10}.}
+%     \label{fig:esquema}
+%  \end{center}
+%\end{figure*}
 
 Como se puede apreciar, los parámetros que se mantienen constantes dentro de cada compartimiento, pueden verse
 como una función constante por tramos que varía según $x$. Tenemos entonces:
@@ -327,13 +318,6 @@ Luego de resolver por el método de la potencia modificado el sistema de ecuacio
 valor de $k$, que se corresponde con el de $x$ para el $h$ elegido, y la segunda columna el valor aproximado de 
 $\phi(x)$ obtenido en ese punto.}
 \end{table}
-\begin{figure*}
-  \begin{center}
-      \epsfig{file=images/concentracionneutrones.pdf, width=400px}
-       \caption[Gráfico de la concentración de neutrones]{Concentración de neutrones en estado estacionario en función de la distancia $x$.}
-     \label{fig:graficoNeutrones}
-  \end{center}
-\end{figure*}
 
 
 Si graficamos $\phi$ en función de la distancia ($x$), obtenemos el gráfico \ref{fig:graficoNeutrones}. Los resultados obtenidos no son los deseados pues no representan la realidad física del problema, ya que la concentración de neutrones por definición no puede ser negativa, como se muestra en los resultados obtenidos. Esto puede ser por el valor que tomamos para $h$, pero para descartar esta suposición resolvimos el sistemas de ecuaciones \ref{eq:sistemasdeecuaciones} para distintos valores de $h$, por ejemplo para $h=0.5$ y $h=0.1$. A pesar de variar los valores de $h$, no logramos obtener una aproximación a la concentración de neutrones en estado estacionario donde todos sus valores fueran positivos.
