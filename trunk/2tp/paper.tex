@@ -85,7 +85,8 @@ Las ecuaciones que permiten estos operadores son: \\
 \mathcal{F}\{f\} &=& \dfrac{1}{2\pi} \int_{-\infty}^{\infty} f(x)e^{-2\pi i \omega x} dx  \\
 \check{f} &=& \dfrac{1}{2\pi} \int_{-\infty}^{\infty} f(x)e^{2\pi i \omega x} dx
 \end{eqnarray}
-donde $\mathcal{F}\{f\} $ representa la transformada de Fourier de $f$ y $\check{f}$ la antitransformada de Fourier de $f$.\\
+donde $\mathcal{F}\{f\} $ representa la transformada de Fourier de $f$ y $\check{f}$ la antitransformada de Fourier de $f$.
+\citet*{wolf10}\\
 
 
 La transformada de Fourier puede ser extendida a 2 dimensiones para permitir la transformación de una imagen 
@@ -115,6 +116,9 @@ I_{n,m} &=& \dfrac{1}{N^2}\sum_{l=0}^{N-1}\sum_{k=0}^{N-1} X_{l,k}e^{\frac{2\pi 
 \end{eqnarray}
 donde $T_{l,k} $ representa la transformada de Fourier de la imagen $I$ y $I_{n,m} $ la antitransformada de Fourier de la imagen.\\
 
+Así, se pueden aplicar filtros espaciales usando estas ecuaciones discretizadas. Para esto, se transforma la imagen
+al dominio de las frecuencias, se aplica el filtro (mediante una multiplicación) y luego se antitransforma la imagen
+al dominio espacial para ver el resultado.
 
 \section{Filtros utilizados}
 \label{sec:sec2}
@@ -129,13 +133,17 @@ H(k,l) = \left\{
 	\end{matrix} 
 	\right.
 \end{eqnarray}
+Este filtro tiene la forma de una cruz y filtra las frecuencias altas en ambas variables. No filtra las frecuencias altas en
+una sóla variable (en las cuales la otra variable tiene baja frecuencia). Esto produce un efecto similar al filtro
+pasaaltos.
 
+\\
 El segundo filtro que utilizamos es el llamado Gaussiano:
 
 \begin{eqnarray}
 H(k,l) = e^{-0.1(k^2 + l^2)}
 \end{eqnarray}
-El filtro gaussiano lo que hace es aplicarle una difusión a la imagen. Es decir cambiando el valor por cual está multiplicado, la suma de los cuadrados de las variables, se puede variar la profundidad de la difusión. Es decir, al hacer ese valor más chico en valor absoluto, se logra una imagen menos difusa, pero al agrandar ese valor, la imagen obtenida se vuelve cada vez más difusa.
+El filtro gaussiano lo que hace es aplicarle una difusión a la imagen. Es decir cambiando el valor por cual está multiplicado, la suma de los cuadrados de las variables, se puede variar la profundidad de la difusión. Es decir, al hacer ese valor más chico en valor absoluto, se logra una imagen menos difusa, pero al agrandar ese valor, la imagen obtenida se vuelve cada vez más difusa. Esto se debe a que el filtro gaussiano funciona como un filtro pasabajos, anulando las altas frecuencias, que es lo que da la sensación de bordes en las imágenes.
 \\
 El último filtro utilizado es el que llamamos Damero:
 \begin{eqnarray}
@@ -146,6 +154,9 @@ H(k,l) = \left\{
 	\end{matrix} 
 	\right.
 \end{eqnarray}
+El filtro damero o checkerboard filtra los pixels alternados, como en un tablero de ajedrez. Esto produce que se 
+filtren (se apaguen) algunas frecuencias salteadas, causando un comportamiento altamente no lineal en el dominio
+del espacio.
 
 
 \section{Seccion 3}
