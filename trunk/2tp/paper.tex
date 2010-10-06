@@ -40,7 +40,7 @@
 \begin{document}
 
 \submitted{Departamento Ing. en Informática, ITBA}
-\title{Filtros espaciales en imagenes mediante el paso del dominio de los colores al dominio de las frecuencias}
+\title{Filtros espaciales en imagenes mediante el paso del dominio espacial al dominio de las frecuencias}
 \author{Williams M. \& Aráoz M.}
 \date{\today}
 
@@ -66,6 +66,54 @@
 %     \label{fig:esquema}
 %  \end{center}
 %\end{figure*}
+
+
+
+
+
+Dada una señal cualquiera, una representación en el dominio del tiempo muestra como evoluciona dicha señal
+a través del tiempo. Por otro lado, una representación en el dominio de las frecuencias muestra qué tanto de 
+la señal pertenece a cada banda de frecuencias en un determinado rango. \citet*{wiki10} Una función o señal puede ser convertida
+o "transformada" entre el dominio del tiempo y la frecuencia mediante operadores funcionales introducidos por 
+Joseph Fourier para el estudio de la difusión del calor. Dichos operadores son la transformada de Fourier (para
+pasar una función del dominio del tiempo al dominio de la frecuencia) y la antitransformada de Fourier (para hacer
+el proceso inverso). Ambos operadores descomponen una función en una suma infinita de senos y cosenos, o equivalentemente
+en una suma de funciones exponenciales complejas. \\
+
+Las ecuaciones que permiten estos operadores son: \\
+\begin{eqnarray}
+\mathcal{F}\{f\} &=& \dfrac{1}{2\pi} \int_{-\infty}^{\infty} f(x)e^{-2\pi i \omega x} dx  \\
+\check{f} &=& \dfrac{1}{2\pi} \int_{-\infty}^{\infty} f(x)e^{2\pi i \omega x} dx
+\end{eqnarray}
+donde $\mathcal{F}\{f\} $ representa la transformada de Fourier de $f$ y $\check{f}$ la antitransformada de Fourier de $f$.\\
+
+
+La transformada de Fourier puede ser extendida a 2 dimensiones para permitir la transformación de una imagen 
+del dominio de los pixels (espacial) al dominio de las frecuencias. Esto permite la aplicación de algunos filtros
+espaciales con algunas ventajas en performance debido a que es más eficiente computar la transformada
+de Fourier, realizar productos en el dominio de las frecuencias, y computar la transformada inversa,
+que computar la convolución en el dominio espacial.\citet*{bou98} \\
+
+Una imagen (cuadrada, para simplificar el análisis, aunque puede extenderse fácilmente a imágenes rectangulares)
+puede definirse matemáticamente como:
+\begin{eqnarray}
+f:D \times D \rightarrow P
+\end{eqnarray}
+donde $D \subseteq  \mathbb{N} $ y representa el dominio de un lado de la imagen (alto o ancho), 
+y $P$ representa el espacio de pixels (valores típicos son $P=[0,255]\cap\mathbb{N}$ para imágenes
+en escala de grises o $P=[0,16581375]\cap\mathbb{N}$ para imágenes a color). \\
+
+De esta forma, la imagen es representada por la función $f$ haciendo que $f(x,y)$ represente el color
+del pixel en la posición $(x,y)$ de la imagen. \\
+
+Por esta forma de representar la imagen, es necesario discretizar los operadores de transformada y 
+antitransformada de Fourier en 2 dimensiones. Esto se logra mediante las siguientes ecuaciones, suponiendo que el conjunto $P$ del codominio de la imagen $f$ tiene un cardinal igual a $card(P)= N$.
+
+\begin{eqnarray}
+T_{l,k} &=& \sum_{n=0}^{N-1}\sum_{m=0}^{N-1} I_{n,m}e^{-\frac{2\pi i}{N}(nl+mk)} \\
+I_{n,m} &=& \dfrac{1}{N^2}\sum_{l=0}^{N-1}\sum_{k=0}^{N-1} X_{l,k}e^{\frac{2\pi i}{N}(nl+mk)} 
+\end{eqnarray}
+donde $T_{l,k} $ representa la transformada de Fourier de la imagen $I$ y $I_{n,m} $ la antitransformada de Fourier de la imagen.\\
 
 
 \section{Filtros utilizados}
