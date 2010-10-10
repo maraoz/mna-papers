@@ -13,6 +13,8 @@
 \usepackage{epsfig}
 \usepackage{amsmath}
 \usepackage{natbib}
+\usepackage{graphicx}
+
 
 % spanish packages
 \usepackage[utf8]{inputenc}
@@ -157,14 +159,42 @@ filtren (se apaguen) algunas frecuencias salteadas, causando un comportamiento a
 del espacio.
 
 
-\section{Seccion 3}
+\section{Codigo utilizado}
 \label{sec:sec3}
-
-
-
+Para llevar a cabo este trabajo utilizamos un \emph{script} para aplicar los filtros. A su vez, los filtros también se encuentran escritos como funciones de \emph{Matlab/Octave}. El código que aplica los filtros se puede ver en la figura Fig. \ref{fig:codigobase}, y podemos hacer unos comentarios al respecto. 
+\begin{figure}
+      \includegraphics[width=254px]{images/code.png}
+       \caption[Código utilizado para aplicar los filtros.]{Código utilizado para aplicar los filtros.}
+     \label{fig:codigobase}
+\end{figure}
+En primer lugar, para calcular la Transformada de Fourier en varias dimensiones, hacemos uso de la función \emph{fftn} de \emph{Matlab}, que según la documentación utiliza el algoritmo FFTW para computar la Transformada Discreta de Fourier. Asimismo, la antitransformada se calcula utilizando la función \emph{ifftn}, que también la provee \emph{Matlab}. Es necesario remarcar que para se vea una imagen al dibujar los puntos que se encuentran en el archivo \emph{Saturno}, se tiene que setear el mapa de colores en una escala de grises desde 0 al 255. Esto es porque cada punto del archivo representa un número de gris entre 0 y 255. Por la misma razón, luego de que calculamos la fase y la amplitud, normalizamos los valores obtenidos entre 0 y 255.
 
 \section{Resultados y Conclusiones}
 \label{sec:resultadosyconclusiones}
+Como resultados de este trabajo, obtuvimos las imagenes luego de aplicar los filtros. Todas las imagenes se obtuvieron luego de aplicar filtros a la imagen original que se muestra en Fig. \ref{fig:imagensaturno}. 
+\begin{figure}[ht!]
+     \includegraphics[width=254px]{images/saturno.png}
+      \caption[Imagen original de Saturno.]{Imagen original.}
+     \label{fig:imagensaturno}
+\end{figure} 
+Primero veamos la imagen obtenido luego de aplicar el filtro Gaussiano. En la figura Fig. \ref{fig:imagengaussiana} se puede la imagen original pero difusa. Es decir, no se distingue con claridad la imagen de Saturno.
+\begin{figure}[ht!]
+     \includegraphics[width=254px]{images/gaussiano.png}
+       \caption{Imagen resultante de la aplicación un filtro Gaussiano.}
+     \label{fig:imagengaussiana}
+\end{figure} 
+En segundo lugar, veamos la imagen obtenida luego de aplicarle un filtro damero, que se muestra en la Fig. \ref{fig:imagendamero}. En este caso se puede ver el comportamiento no lineal que produce el filtro a la imagen.
+\begin{figure}[ht!]
+     \includegraphics[width=254px]{images/damero.png}
+       \caption{Imagen resultante de la aplicación un filtro Damero.}
+     \label{fig:imagendamero}
+\end{figure} 
+Por último veamos el resultado de aplicar un filtro Pulso a la imagen original. En la figura Fig. \ref{fig:imagenpulse} se puede ver el resultado. Es interesante ver que además de generar un efecto sobre el contenido de la imagen, también cambia los colores de la misma.
+\begin{figure}[ht!]
+     \includegraphics[width=254px]{images/pulse.png}
+       \caption{Imagen resultante de la aplicación un filtro Pulso.}
+     \label{fig:imagenpulse}
+\end{figure} 
 
 %
 \bibliography{paper}
