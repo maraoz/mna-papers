@@ -4,29 +4,31 @@ function answer = code()
 	
 	image(im');
 	t = fftn(im);
-	%it = ifftn(t);
+    
+    
+    it = ifftn(t);
 
 	% abs to remove small imaginary part (machine error)
-	%image(abs(it)');
+	image(abs(it)');
+    
+	ampl = abs(t);
+	mx = max(max(ampl));
+	mn = min(min(ampl));
 
-	%ampl = abs(t);
-	%mx = max(max(ampl));
-	%mn = min(min(ampl));
+	m = 255/(mx-mn);
+	b = -m*mn;
 
-	%m = 255/(mx-mn);
-	%b = -m*mn;
-
-	%nampl = floor(m*ampl + b);
+	nampl = floor(m*ampl + b);
 	%image(nampl');
 
-	%phase = angle(t);
-	%mx = max(max(phase));
-    %mn = min(min(phase));
+	phase = angle(t);
+	mx = max(max(phase));
+    mn = min(min(phase));
 
-	%m = 255/(mx-mn);
-    %b = -m*mn;
+	m = 255/(mx-mn);
+    b = -m*mn;
 
-    %nphase = floor(m*phase + b)
+    nphase = floor(m*phase + b);
 	%image(nphase');
 
     pul = pulse();
@@ -50,9 +52,5 @@ function answer = code()
   	figure(4);
    	colormap(gray(255));
 	image(it1);
-
-	
-
-
 
 end
