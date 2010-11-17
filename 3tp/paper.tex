@@ -52,10 +52,7 @@
 
 
 \begin{abstract}
-El diseño de un reactor nuclear es un problema muy interesante y complicado. Simplificando el
-modelo para 1 dimensión es posible predecir numéricamente el comportamiento de los neutrones
-producidos por la fusión nuclear. En este trabajo se aplica un método de la potencia con una 
-leve modificación para alcanzar dicho fin.
+La interpretación de la ecuación de ondas para muchos comportamientos que se pueden observar en la vida diaria, generan la necesidad de poder simular este comportamiento. Para logragr esto se necesita un modelo númerico que se obtenga de la ecuación misma. En este trabajo se utiliza la ecuación de ondas contemplando una amortiguación para representar el comportamiento de una soga o un elástico. 
 \end{abstract}
 
 \maketitle
@@ -116,13 +113,34 @@ Por último se puede plantear un método discreto que considere la amortiguació
 \section{Resultados y Conclusiones}
 \label{sec:resultadosyconclusiones}
 
-%\begin{figure*}
- % \begin{center}
-  %    \epsfig{file=images/concentracionneutrones.pdf, width=400px}
- %      \caption[Gráfico de la concentración de neutrones]{Concentración de neutrones en estado estacionario %en función de la distancia $x$.}
- %    \label{fig:graficoNeutrones}
- % \end{center}
-%\end{figure*}
+Como resultados de este trabajo, se obtuvieron las simulaciones para los dos métodos (con amortiguación y sin amortiguación). En el caso del modelo con amortiguación, la soga se comportó como se esperaría que lo hiciera en el mundo real, mientras que cuando el modelo no contemplaba amortigución esto no sucedía pues nunca dejaba de moverse.  
+\begin{figure}[ht!]
+     \includegraphics[width=120px]{images/amortInit.png}
+      \caption{Soga respetando el modelo amortiguado en el simulador de iPhone, en el instante inicial.}
+     \label{fig:amortInit}
+\end{figure} 
+\begin{figure}[ht!]
+     \includegraphics[width=120px]{images/amortFinal.png}
+      \caption{Soga respetando el modelo amortiguado en el simulador de iPhone, en el instante final.}
+     \label{fig:amortFinal}
+\end{figure}
+ 
+Para mostrar la simulación se tomaron dos tiempos, el inicial y uno final. En la figura (\ref{fig:amortInit}) se puede ver la simulación de la soga utilizando el modelo amortiguado en el momento inicial mientras que en la figura (\ref{fig:amortFinal}) se puede ver la misma simulación luego de una determinada cantidad de tiempo.
+
+\begin{figure}[ht!]
+     \includegraphics[width=120px]{images/sinamortInit.png}
+      \caption{Soga respetando el modelo no amortiguado en el simulador de iPhone en el instante inicial.}
+     \label{fig:sinamortInit}
+\end{figure}
+\begin{figure}[ht!]
+     \includegraphics[width=120px]{images/sinamortFinal.png}
+      \caption{Soga respetando el modelo no amortiguado en el simulador de iPhone en el instante final.}
+     \label{fig:sinamortFinal}
+\end{figure}
+
+Utilizando los mismos tiempo para el modelo amortiguado se obtienen la figura la figura (\ref{fig:sinamortInit}) en el momento inicial y la figura (\ref{fig:sinamortFinal}) en el instante final.  Para ambos casos se ha utilizado la misma pertubación inicial.
+ 
+
 %
 % References
 %

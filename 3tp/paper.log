@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.8.31)  17 NOV 2010 02:01
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.8.31)  17 NOV 2010 09:55
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -584,21 +584,48 @@ Overfull \hbox (43.69124pt too wide) in alignment at lines 102--111
  [][][] []
  []
 
+<images/amortInit.png, id=1, 737.75626pt x 393.47pt>
+File: images/amortInit.png Graphic file (type png)
+
+<use images/amortInit.png>
+<images/amortFinal.png, id=2, 723.70375pt x 375.4025pt>
+File: images/amortFinal.png Graphic file (type png)
+
+<use images/amortFinal.png>
+<images/sinamortInit.png, id=3, 718.685pt x 386.44376pt>
+File: images/sinamortInit.png Graphic file (type png)
+
+<use images/sinamortInit.png>
+<images/sinamortFinal.png, id=4, 725.71124pt x 382.42876pt>
+File: images/sinamortFinal.png Graphic file (type png)
+
+<use images/sinamortFinal.png>
 No file paper.bbl.
-[1{/usr/local/texlive/2009/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./paper.aux)
+[1{/usr/local/texlive/2009/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./ima
+ges/amortInit.png (PNG copy)>]
+
+LaTeX Warning: A float is stuck (cannot be placed) on input line 152.
+
+
+LaTeX Warning: A float is stuck (cannot be placed) on input line 152.
+
+
+Class revtex4-1 Warning: Deferred float stuck during \clearpage processing.
+
+[2 <./images/amortFinal.png (PNG copy)> <./images/sinamortInit.png (PNG copy)> 
+<./images/sinamortFinal.png (PNG copy)>] (./paper.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5036 strings out of 493773
- 62388 string characters out of 3145346
- 161886 words of memory out of 3000000
- 8273 multiletter control sequences out of 15000+200000
+ 5073 strings out of 493773
+ 63105 string characters out of 3145346
+ 148886 words of memory out of 3000000
+ 8304 multiletter control sequences out of 15000+200000
  7555 words of font info for 31 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 32i,12n,27p,706b,216s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 32i,12n,27p,706b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pf
 b></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
@@ -611,9 +638,9 @@ exlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texl
 ive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on paper.pdf (1 page, 138491 bytes).
+Output written on paper.pdf (2 pages, 554368 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
+ 61 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
